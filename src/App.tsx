@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/header";
+import { About, Profile } from "./navigation/routes";
+import Home from "./pages/home";
+import UserDetail from "./pages/user/detail";
+import UserList from "./pages/user/list";
 
-function App() {
+export interface AppPage {}
+const App: React.FunctionComponent<AppPage> = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Suspense fallback>
+        <div className="App">
+          <Header />
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route path="about">
+            <Route index element={<About />} />
+            <Route path=":aboutID" element={<About />} />
+          </Route>
+
+          <Route path="/profile" element={<Profile />} />
+
+          <Route path="users">
+            <Route index element={<UserList />} />
+            <Route path=":userId" element={<UserDetail />} />
+          </Route>
+
+          <Route path="*" element={<h1>The page was not found</h1>} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
