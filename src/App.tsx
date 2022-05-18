@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header";
 import { About, Profile } from "./navigation/routes";
+import SpeedoMeter from "./pages/charts/speedo-meter";
 import Home from "./pages/home";
 import UserDetail from "./pages/user/detail";
 import UserList from "./pages/user/list";
@@ -29,6 +30,8 @@ const App: React.FunctionComponent<AppPage> = () => {
             <Route index element={<UserList />} />
             <Route path=":userId" element={<UserDetail />} />
           </Route>
+
+          <Route path="/speedometer" element={<SpeedoMeter />} />
 
           <Route path="*" element={<h1>The page was not found</h1>} />
         </Routes>
