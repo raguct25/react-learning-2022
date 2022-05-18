@@ -11,6 +11,8 @@ const Home: React.FunctionComponent<AboutPage> = (props) => {
       <NavLink to="profile">Go To Profile Page</NavLink>
       <br />
       <Link to="about">Go To About Page</Link>
+      <br />
+      <Link to="speedometer">Go To Speedo Meter Page</Link>
     </div>
   );
 };
